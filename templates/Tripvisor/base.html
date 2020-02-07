@@ -1,0 +1,85 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../static/media/favicon.ico" type="image/x-icon"/>
+    <title>Title</title>
+    <style>
+      body{
+          background-color :  #F8FEFF;
+          font-family : Verdana;
+      }
+      header{
+          height : 120px;
+          width: auto;
+          background-color : #013095;
+          color : #FFFFFF;
+          font-family : Verdana;
+      }
+      nav{
+          background-color : #FFD238;
+          border-width : 0.5px;
+          border-color : #FFD238;
+          border-style : solid;
+      }
+      a{
+        margin : 20px;
+        color : #00409c;
+          text-decoration: none;
+
+      }
+      a:hover {
+          text-decoration: underline;
+          color: #0b10d0;
+      }
+        img{
+
+        }
+
+    </style>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            title is provided by inheriting templates
+        {% endblock %}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if IE]><script
+      src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+    </script><![endif]-->
+</head>
+
+<body>
+
+<div><!-- start of container -->
+    <header id=header>
+        <img src="{% static 'media/name.png' %}" width="170" alt=""/>
+    </header>
+    <!------------------------>
+    <nav >
+        <ul >
+            <a href="{%  url 'Tripvisor_location_list_urlpattern' %}">
+                    Locations</a> |
+            <a href="{%  url 'Tripvisor_attraction_list_urlpattern' %}">
+                    Attractions</a> |
+            <a href="{%  url 'Tripvisor_user_list_urlpattern' %}">
+                    Users</a> |
+            <a href="{%  url 'Tripvisor_tour_list_urlpattern' %}">
+                    Reviews</a>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+            This is default content!
+        {% endblock %}
+    </main>
+</div><!-- end of container -->
+
+</body>
+</html>

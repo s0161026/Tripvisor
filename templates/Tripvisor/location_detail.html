@@ -1,0 +1,86 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            text-align : left;
+        }
+        section{
+            line-height: 200%;
+            margin : 10px;
+            background-color : #FFFFFF;
+        }
+    </style>
+</head>
+
+{% extends 'Tripvisor/base.html' %}
+
+{% block title %}
+    Location - {{ location }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ location }}</h2>
+    <ul>
+        <li>
+            <a href="{{ location.get_update_url }}">
+                Edit Location
+            </a>
+        </li>
+        <li>
+            <a href="{{ location.get_delete_url }}">
+                Delete Location
+            </a>
+        </li>
+    </ul>
+
+    <section>
+        <table>
+            <tr>
+                <th>City:</th>
+                <td>{{ location.city }}</td>
+            </tr>
+            <tr>
+                <th>State:</th>
+                <td>{{ location.state }}</td>
+            </tr>
+            <tr>
+                <th>Area:</th>
+                <td>{{ location.area }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Attractions</h3>
+        <ul>
+            {% for attraction in attraction_list %}
+                <li>
+                    <a href="{{ attraction.get_absolute_url }}">{{ attraction }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no attractions for this location.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>Make A Schedule!</h3>
+        <form action="" method="POST">
+        {% csrf_token %}
+        Start Date: <input type="date" name="StartDate" value= '{% if submitbutton == "Submit" %} {{ start_date }} {% endif %}'/>
+        End Date: <input type="date" name="EndDate" value= '{% if submitbutton == "Submit" %} {{ end_date }} {% endif %}'/><br><br>
+        <input type="Submit" name="Submit" value="Submit"/>
+        </form>
+
+        <td width="170px" style="word-wrap:break-word;">
+            <div style="width:100%;overflow:auto">
+                {% if schedule%}
+                    <pre>{{ schedule }}</pre>
+                {% endif %}
+            </div>
+        </td>
+
+
+    </section>
+{% endblock %}

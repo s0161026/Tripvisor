@@ -1,0 +1,57 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            text-align : left;
+        }
+    </style>
+</head>
+
+{% extends 'Tripvisor/base.html' %}
+
+{% block title %}
+    Tour - {{ tour }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ tour }}</h2>
+
+    <section>
+        <table>
+            <tr>
+                <th>User:</th>
+                <td><a href="{{ tour.user.get_absolute_url }}">{{ tour.user }}</a></td>
+            </tr>
+            <tr>
+                <th>Attraction:</th>
+                <td><a href="{{ attraction.get_absolute_url }}">{{ attraction }}</a></td>
+            </tr>
+            <tr>
+                <th>Title:</th>
+                <td>{{ tour.tour_name }}</td>
+            </tr>
+            <tr>
+                <th>Date:</th>
+                <td>{{ tour.date }}</td>
+            </tr>
+            <tr>
+                <th>Duration:</th>
+                <td>{{ tour.duration }}</td>
+            </tr>
+            <tr>
+                <th>Cost:</th>
+                <td>{{ tour.cost }}</td>
+            </tr>
+            <tr>
+                <th>Rate:</th>
+                <td>{{ tour.rate }}</td>
+            </tr>
+            <tr>
+                <th>Feedback:</th>
+                <td>{{ tour.feedback }}</td>
+            </tr>
+        </table>
+
+    </section>
+{% endblock %}

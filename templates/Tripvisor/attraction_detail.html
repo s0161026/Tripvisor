@@ -1,0 +1,111 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            text-align:justify;
+            line-height:200%;
+            padding:20px;
+        }
+        section{
+            margin : 10px;
+            background-color : #FFFFFF;
+        }
+        img{
+            float : right;
+            margin:30px;
+        }
+    </style>
+</head>
+
+{% extends 'Tripvisor/base.html' %}
+
+{% block title %}
+    Attraction - {{ attraction }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ attraction }}</h2>
+
+    <section>
+        <table>
+            <tr>
+                <th>Location:</th>
+                <td><a href="{{ attraction.location.get_absolute_url }}">{{ attraction.location }}</a></td>
+            </tr>
+            <tr>
+                <th>Name:</th>
+                <td>{{ attraction.attraction_name }}</td>
+            </tr>
+            <tr>
+                <th>Type:</th>
+                <td>{{ attraction.type }}</td>
+            </tr>
+            <tr>
+                <th>Open Hours:</th>
+                <td>{{ attraction.open_hours }}</td>
+            </tr>
+            <tr>
+                <th>Suggested Duration:</th>
+                <td>{{ attraction.suggested_durations }} hrs</td>
+            </tr>
+            <tr>
+                <th>Price:</th>
+                <td>${{ attraction.price }}</td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td>{{ attraction.address }}</td>
+            </tr>
+            <tr>
+                <th>Website:</th>
+                <td><a href="{{ attraction.website }}">{{ attraction.website }}</a></td>
+            </tr>
+            <tr>
+                <th>Information:</th>
+                <td>{{ attraction.attraction_info }}</td>
+            </tr>
+            <img src = "{{attraction.image}} " width="480"/>
+
+        </table>
+    </section>
+
+    <section>
+        <h3>Reviews</h3>
+        <ul>
+            {% for tour in tour_list %}
+                <li>
+                    <a href="{{ tour.get_absolute_url }}">{{ tour }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no tours for this attraction.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>People also like...</h3>
+        <ul>
+            {% for attraction in attraction_list %}
+                <li>
+                    <a href="{{ attraction.get_absolute_url }}">{{ attraction }}</a>
+                </li>
+            {% empty %}
+                <li><em>There is currently no person like this place. Don't go!</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>You may go with...</h3>
+        <ul>
+            {% for user in user_list %}
+                <li>
+                    <a href="{{ user.get_absolute_url }}">{{ user }}</a>
+                </li>
+            {% empty %}
+                <li><em>Nobody wants to go this place.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

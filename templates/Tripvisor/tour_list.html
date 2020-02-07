@@ -1,0 +1,47 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            line-height: 200%;
+
+        }
+        form{
+            padding-left: 20px;
+        }
+      button{
+        height : 30px;
+          width : 70px;
+        background-color : #004AB8;
+        border-width : 1px;
+          border-color : #004AB8;
+        border-style : solid;
+        color : #FFFFFF;
+      }
+      input{
+        height: 30px;
+          width : 250px;
+        border-width : 1px;
+        border-color : #004AB8;
+      }
+   </style>
+</head>
+
+{% extends 'Tripvisor/base.html' %}
+
+{% block title %}
+    Review List
+{% endblock %}
+
+{% block content %}
+    <h2>Review List</h2>
+    <ul>
+        {% for tour in tour_list %}
+            <li>
+                <a href="{{ tour.get_absolute_url }}">{{ tour }}</a>
+            </li>
+        {% empty %}
+            <li><em>There are currently no tours available.</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

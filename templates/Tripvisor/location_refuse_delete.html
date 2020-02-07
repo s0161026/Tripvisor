@@ -1,0 +1,28 @@
+{% extends 'Tripvisor/base.html' %}
+
+{% block title %}
+    Error Deleting Location
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Location</h2>
+        <p>
+            You may not delete location {{ location }}. This
+            location is currently assigned to the following
+            attractions:
+        </p>
+
+        <ul>
+            {% for tour in tours %}
+            <li>
+                <a href="{{ tour.get_absolute_url }}">{{ tour }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'Tripvisor_location_list_urlpattern' %}">Location List</a>
+        </p>
+    </div>
+{% endblock %}

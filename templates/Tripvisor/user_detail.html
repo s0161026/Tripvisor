@@ -1,0 +1,67 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            text-align : left;
+            padding-left: 20px;
+        }
+        section{
+            margin : 10px;
+            background-color : #FFFFFF;
+        }
+    </style>
+</head>
+
+{% extends 'Tripvisor/base.html' %}
+
+{% block title %}
+    User - {{ user }}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ user }}</h2>
+
+    <section>
+        <table>
+            <tr>
+                <th>User Account:</th>
+                <td>{{ user.user_account }}</td>
+            </tr>
+            <tr>
+                <th>First Name:</th>
+                <td>{{ user.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td>{{ user.last_name }}</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Likes</h3>
+        <ul>
+            {% for attraction in attraction_list %}
+                <li>
+                    <a href="{{ attraction.get_absolute_url }}">{{ attraction }}</a>
+                </li>
+            {% empty %}
+                <li><em>This user doesn't like any attraction.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>Reviews</h3>
+        <ul>
+            {% for tour in tour_list %}
+                <li>
+                    <a href="{{ tour.get_absolute_url }}">{{ tour }}</a>
+                </li>
+            {% empty %}
+                <li><em>There are currently no tours for this user.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
